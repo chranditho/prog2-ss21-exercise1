@@ -1,47 +1,31 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class FuelCalculatorTest {
 
-    @Test
-    void calculateFuelForMassEqualsTwelve() {
-        FuelCalculator fuelCalculator = new FuelCalculator();
-        double mass = 12;
+    FuelCalculator fuelCalculator = new FuelCalculator();
 
+    @ParameterizedTest
+    @ValueSource(doubles = {12, 14, 1969, 100756})
+    void calculateRequiredFuelForOnePlanet(double mass) {
         double requiredFuel = fuelCalculator.calculateRequiredFuel(mass);
+        int expectedFuel;
 
-        assertEquals(2, requiredFuel);
-    }
+        if (mass == 12 || mass == 14) {
+            expectedFuel = 2;
+        } else if (mass == 1969) {
+            expectedFuel = 654;
+        } else if (mass == 100756) {
+            expectedFuel = 33583;
+        } else {
+            expectedFuel = 0;
+        }
 
-    @Test
-    void calculateFuelForMassEqualsFourteen() {
-        FuelCalculator fuelCalculator = new FuelCalculator();
-        double mass = 14;
-
-        double requiredFuel = fuelCalculator.calculateRequiredFuel(mass);
-
-        assertEquals(2, requiredFuel);
-    }
-
-    @Test
-    void calculateFuelForMassEquals1969() {
-        FuelCalculator fuelCalculator = new FuelCalculator();
-        double mass = 1969;
-
-        double requiredFuel = fuelCalculator.calculateRequiredFuel(mass);
-
-        assertEquals(654, requiredFuel);
-    }
-
-    @Test
-    void calculateFuelForMassEquals100756() {
-        FuelCalculator fuelCalculator = new FuelCalculator();
-        double mass = 100756;
-
-        double requiredFuel = fuelCalculator.calculateRequiredFuel(mass);
-
-        assertEquals(33583, requiredFuel);
+        assertEquals(expectedFuel, requiredFuel,
+                "The expected fuel consumption for a mass of " + mass + " Newton is " + expectedFuel + " liters");
     }
 
     @Test
