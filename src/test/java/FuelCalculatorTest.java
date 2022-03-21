@@ -43,4 +43,14 @@ public class FuelCalculatorTest {
 
         assertEquals(33583, requiredFuel);
     }
+
+    @Test
+    void calculateFuelForSeveralPlanets() {
+        FuelCalculator fuelCalculator = new FuelCalculator();
+        double[] masses = new double[] {12, 14, 1969, 100756};
+
+        double requiredFuel = fuelCalculator.calculateRequiredFuelForMultiplePlanets(masses);
+
+        assertEquals(2 + 2 + 654 + 33583, requiredFuel);
+    }
 }
