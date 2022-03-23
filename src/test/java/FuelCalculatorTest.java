@@ -12,7 +12,7 @@ public class FuelCalculatorTest {
     @ValueSource(doubles = {12, 14, 1969, 100756})
     void calculateRequiredFuelForOnePlanet(double mass) {
         double requiredFuel = fuelCalculator.calculateRequiredFuel(mass);
-        int expectedFuel;
+        double expectedFuel;
 
         if (mass == 12 || mass == 14) {
             expectedFuel = 2;
