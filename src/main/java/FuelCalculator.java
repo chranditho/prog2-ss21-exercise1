@@ -26,4 +26,13 @@ public class FuelCalculator {
         double fuel = fuelCalculator.calculateRequiredFuelForMultiplePlanets(fuelCalculator.masses);
         System.out.println("fuel = " + fuel);
     }
+
+    public double calculateFuelForFuel(double totalFuel, double mass) {
+        double requiredFuelForFuel = calculateRequiredFuel(mass);
+        if (requiredFuelForFuel > 0) {
+            totalFuel += requiredFuelForFuel;
+            return calculateFuelForFuel(totalFuel, requiredFuelForFuel);
+        }
+        return totalFuel;
+    }
 }

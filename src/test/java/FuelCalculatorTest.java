@@ -30,11 +30,21 @@ public class FuelCalculatorTest {
 
     @Test
     void calculateFuelForSeveralPlanets() {
-        FuelCalculator fuelCalculator = new FuelCalculator();
         double[] masses = new double[] {12, 14, 1969, 100756};
 
         double requiredFuel = fuelCalculator.calculateRequiredFuelForMultiplePlanets(masses);
 
         assertEquals(2 + 2 + 654 + 33583, requiredFuel);
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {14, 1969})
+    void ensureEnoughFuelForTheFuelIsProvided(double mass) {
+        double requiredTotalFuel = fuelCalculator.calculateFuelForFuel(0, mass);
+        if (mass == 14) {
+            assertEquals(2, requiredTotalFuel);
+        } else if (mass == 1969) {
+            assertEquals(966, requiredTotalFuel);
+        }
     }
 }
