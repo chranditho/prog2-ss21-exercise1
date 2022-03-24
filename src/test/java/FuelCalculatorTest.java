@@ -4,9 +4,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+/**
+ * This class only tests the functionalities, the required calculations are made in the main method of the FuelCalculator class.
+ * link to the repository: https://github.com/chranditho/prog2-ss21-exercise1
+ */
 public class FuelCalculatorTest {
 
     FuelCalculator fuelCalculator = new FuelCalculator();
+
 
     @ParameterizedTest
     @ValueSource(doubles = {12, 14, 1969, 100756})
