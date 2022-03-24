@@ -35,4 +35,12 @@ public class FuelCalculator {
         }
         return totalFuel;
     }
+
+    public double calculateTotalFuelForMultiplePlanets(double[] masses) {
+        double fuel = 0;
+        for (double mass : masses) {
+            fuel += calculateFuelForFuel(0, mass);
+        }
+        return fuel;
+    }
 }
